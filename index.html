@@ -15,6 +15,7 @@
       background-color: #F6F3EC;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .font-serif {
       font-family: 'Playfair Display', Georgia, serif;
@@ -28,14 +29,14 @@
     <!-- Top Header -->
     <header class="flex items-center justify-between mb-4">
       <div class="flex items-center gap-2">
-        <button class="w-11 h-11 bg-white rounded-2xl shadow-sm border border-stone-200/80 flex items-center justify-center text-stone-700 active:scale-95 transition-transform">
+        <button type="button" class="w-11 h-11 bg-white rounded-2xl shadow-sm border border-stone-200/80 flex items-center justify-center text-stone-700 active:scale-95 transition-transform">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-        <button id="top-back-btn" onclick="goBack()" class="hidden w-11 h-11 bg-stone-900 rounded-2xl shadow-sm flex items-center justify-center text-white active:scale-95 transition-transform">
+        <button id="top-back-btn" type="button" onclick="goBack()" class="hidden w-11 h-11 bg-stone-900 rounded-2xl shadow-sm flex items-center justify-center text-white active:scale-95 transition-transform">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
         </button>
       </div>
-      <button class="w-11 h-11 bg-white rounded-2xl shadow-sm border border-stone-200/80 flex items-center justify-center text-stone-700 active:scale-95 transition-transform">
+      <button type="button" class="w-11 h-11 bg-white rounded-2xl shadow-sm border border-stone-200/80 flex items-center justify-center text-stone-700 active:scale-95 transition-transform">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
       </button>
     </header>
@@ -46,18 +47,18 @@
     <!-- ==================== SCREEN 0: HOME ==================== -->
     <div id="screen-home" class="space-y-4">
       
-      <!-- Counters Row (Exams, Courses, Institutes) -->
+      <!-- Counters Row -->
       <div class="grid grid-cols-3 gap-2.5">
         <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
-          <span id="counter-exams" class="block text-2xl font-serif italic text-amber-700 font-bold">1</span>
+          <span class="block text-2xl font-serif italic text-amber-700 font-bold">1</span>
           <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Exams</span>
         </div>
         <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
-          <span id="counter-courses" class="block text-2xl font-serif italic text-amber-700 font-bold">12</span>
+          <span class="block text-2xl font-serif italic text-amber-700 font-bold">12</span>
           <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Courses</span>
         </div>
         <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
-          <span id="counter-institutes" class="block text-2xl font-serif italic text-amber-700 font-bold">5</span>
+          <span class="block text-2xl font-serif italic text-amber-700 font-bold">5</span>
           <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Institutes</span>
         </div>
       </div>
@@ -65,16 +66,16 @@
       <!-- Search Box -->
       <div class="relative">
         <svg class="w-4 h-4 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <input id="search-box" type="text" placeholder="Search exams, institutes..." class="w-full bg-white border border-stone-200/80 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none shadow-sm" />
+        <input type="text" placeholder="Search exams, institutes..." class="w-full bg-white border border-stone-200/80 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none shadow-sm" />
       </div>
 
-      <!-- Toggle Buttons (By Exams vs By Institutes) -->
+      <!-- Toggle Tabs -->
       <div class="flex bg-[#EBE6DC] p-1.5 rounded-2xl">
-        <button id="tab-exams-btn" onclick="toggleTab('exams')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 bg-stone-900 text-white shadow-sm transition-all">
+        <button id="tab-exams-btn" type="button" onclick="switchView('exams')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 bg-stone-900 text-white shadow-sm transition-all">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
           By Exams
         </button>
-        <button id="tab-inst-btn" onclick="toggleTab('institutes')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 text-stone-600 transition-all">
+        <button id="tab-inst-btn" type="button" onclick="switchView('institutes')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 text-stone-600 transition-all">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
           By Institutes
         </button>
@@ -90,10 +91,10 @@
           <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">1 Available</span>
         </div>
 
-        <!-- SSC Card -->
-        <div onclick="goTo('categories')" class="bg-[#2D1B13] rounded-3xl overflow-hidden shadow-md cursor-pointer border border-stone-300 active:scale-[0.99] transition-transform">
+        <!-- Native Touch-Enabled SSC Button -->
+        <button type="button" onclick="openSSC()" class="w-full text-left bg-[#2D1B13] rounded-3xl overflow-hidden shadow-md cursor-pointer border border-stone-300 active:scale-[0.98] transition-transform block">
           <div class="h-44 flex items-center justify-center p-6 bg-gradient-to-b from-stone-900/40 to-transparent">
-            <div class="w-28 h-28 rounded-full border-4 border-amber-400/90 bg-gradient-to-tr from-amber-700 to-amber-900 shadow-2xl flex flex-col items-center justify-center text-center p-2 relative">
+            <div class="w-28 h-28 rounded-full border-4 border-amber-400/90 bg-gradient-to-tr from-amber-700 to-amber-900 shadow-2xl flex flex-col items-center justify-center text-center p-2">
               <div class="w-22 h-22 rounded-full border border-amber-300/40 flex flex-col items-center justify-center p-1">
                 <span class="text-2xl">🏛️</span>
                 <span class="text-[9px] font-bold text-amber-200 tracking-wider mt-1">SSC</span>
@@ -107,9 +108,9 @@
               <span class="text-[10px] font-bold tracking-widest text-amber-800 uppercase">READY</span>
             </div>
             <h3 class="text-xl font-serif font-bold text-stone-900">SSC</h3>
-            <p class="text-xs text-stone-400 font-medium tracking-wide mt-0.5">6 CATEGORIES</p>
+            <p class="text-xs text-stone-400 font-medium tracking-wide mt-0.5">6 CATEGORIES AVAILABLE ›</p>
           </div>
-        </div>
+        </button>
       </div>
 
       <!-- VIEW: INSTITUTES -->
@@ -122,32 +123,32 @@
           <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">4 Available</span>
         </div>
 
-        <div onclick="goTo('categories')" class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer p-6 bg-[#0F141C] text-center active:scale-[0.99] transition-transform">
+        <button type="button" onclick="openSSC()" class="w-full text-center bg-[#0F141C] p-6 rounded-3xl border border-stone-200 shadow-sm active:scale-[0.98] transition-transform block">
           <span class="text-3xl text-[#00A3FF] font-black block">SELECTION WAY</span>
           <span class="text-xs text-stone-400 uppercase tracking-widest mt-1 block">DIRECT LINK</span>
-        </div>
+        </button>
 
-        <div onclick="goTo('categories')" class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer p-6 text-center active:scale-[0.99] transition-transform">
+        <button type="button" onclick="openSSC()" class="w-full text-center bg-white p-6 rounded-3xl border border-stone-200 shadow-sm active:scale-[0.98] transition-transform block">
           <span class="text-2xl text-[#08BD80] font-bold block">unacademy</span>
           <span class="text-xs text-stone-400 uppercase tracking-widest mt-1 block">DIRECT LINK</span>
-        </div>
+        </button>
 
-        <div onclick="goTo('categories')" class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer p-6 bg-slate-900 text-center active:scale-[0.99] transition-transform">
+        <button type="button" onclick="openSSC()" class="w-full text-center bg-slate-900 p-6 rounded-3xl border border-stone-200 shadow-sm active:scale-[0.98] transition-transform block">
           <span class="text-2xl text-blue-400 font-black block">MASTER SAHAB</span>
           <span class="text-xs text-stone-400 uppercase tracking-widest mt-1 block">DIRECT LINK</span>
-        </div>
+        </button>
 
-        <div onclick="goTo('categories')" class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer p-6 bg-[#1E1E2F] text-center active:scale-[0.99] transition-transform">
+        <button type="button" onclick="openSSC()" class="w-full text-center bg-[#1E1E2F] p-6 rounded-3xl border border-stone-200 shadow-sm active:scale-[0.98] transition-transform block">
           <span class="text-3xl text-white font-black block">PW</span>
           <span class="text-xs text-amber-400 uppercase tracking-widest mt-1 block">PHYSICS WALLAH</span>
-        </div>
+        </button>
       </div>
     </div>
 
     <!-- ==================== SCREEN 1: CATEGORIES ==================== -->
     <div id="screen-categories" class="hidden space-y-4">
       <div>
-        <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Browse By Category</p>
+        <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">SSC Examinations</p>
         <div class="flex justify-between items-baseline">
           <h2 class="text-2xl font-serif font-bold">Categories</h2>
           <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">6 Total</span>
@@ -155,83 +156,71 @@
       </div>
 
       <div class="space-y-2.5">
-        <div onclick="goTo('courses', 'GK')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+        <button type="button" onclick="openCategory('GK')" class="w-full flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm active:scale-[0.98] transition-all text-left">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">GK</div>
             <div>
               <h4 class="font-bold text-sm tracking-wide text-stone-900">GK</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
+              <p class="text-xs text-stone-400 mt-0.5">Static GK, History, Polity</p>
             </div>
           </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
+          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">›</div>
+        </button>
 
-        <div onclick="goTo('courses', 'MATH\'S')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+        <button type="button" onclick="openCategory('MATH\'S')" class="w-full flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm active:scale-[0.98] transition-all text-left">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">M</div>
             <div>
               <h4 class="font-bold text-sm tracking-wide text-stone-900">MATH'S</h4>
-              <p class="text-xs text-stone-400 mt-0.5">5 courses available</p>
+              <p class="text-xs text-stone-400 mt-0.5">Arithmetic & Advanced</p>
             </div>
           </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
+          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">›</div>
+        </button>
 
-        <div onclick="goTo('courses', 'ENGLISH')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+        <button type="button" onclick="openCategory('ENGLISH')" class="w-full flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm active:scale-[0.98] transition-all text-left">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">EN</div>
             <div>
               <h4 class="font-bold text-sm tracking-wide text-stone-900">ENGLISH</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
+              <p class="text-xs text-stone-400 mt-0.5">Grammar & Vocab Special</p>
             </div>
           </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
+          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">›</div>
+        </button>
 
-        <div onclick="goTo('courses', 'REASONING')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+        <button type="button" onclick="openCategory('REASONING')" class="w-full flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm active:scale-[0.98] transition-all text-left">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">R</div>
             <div>
               <h4 class="font-bold text-sm tracking-wide text-stone-900">REASONING</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
+              <p class="text-xs text-stone-400 mt-0.5">Verbal & Non-Verbal</p>
             </div>
           </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
+          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">›</div>
+        </button>
 
-        <div onclick="goTo('courses', 'COMPUTER')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+        <button type="button" onclick="openCategory('COMPUTER')" class="w-full flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm active:scale-[0.98] transition-all text-left">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">CS</div>
             <div>
               <h4 class="font-bold text-sm tracking-wide text-stone-900">COMPUTER</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
+              <p class="text-xs text-stone-400 mt-0.5">Qualifying Tier 2 Special</p>
             </div>
           </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
+          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">›</div>
+        </button>
 
-        <div onclick="goTo('courses', 'COMBO COURSES')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+        <button type="button" onclick="openCategory('COMBO COURSES')" class="w-full flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm active:scale-[0.98] transition-all text-left">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">ALL</div>
             <div>
               <h4 class="font-bold text-sm tracking-wide text-stone-900">COMBO COURSES</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
+              <p class="text-xs text-stone-400 mt-0.5">All Subjects Full Foundation</p>
             </div>
           </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
+          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">›</div>
+        </button>
       </div>
     </div>
 
@@ -241,58 +230,82 @@
         <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Available Courses</p>
         <div class="flex justify-between items-baseline">
           <h2 id="courses-title" class="text-2xl font-serif font-bold">MATH'S</h2>
-          <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">3 Courses</span>
+          <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">Batches</span>
         </div>
       </div>
 
-      <div id="courses-list-container" class="space-y-4">
-        <!-- Built-in Batches -->
-        <div onclick="goTo('topics', 'PARMAR MATH\'S TOPPER BATCH')" class="bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+      <div class="space-y-4">
+        <button type="button" onclick="openCourse('PARMAR MATH\'S TOPPER BATCH')" class="w-full text-left bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm active:scale-[0.98] transition-all block">
           <div class="h-44 relative bg-stone-200 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600" alt="Parmar Batch" class="w-full h-full object-cover" />
-            <span class="w-9 h-9 bg-white/90 backdrop-blur rounded-full absolute top-3 right-3 flex items-center justify-center text-amber-500 shadow-sm">★</span>
+            <span class="w-9 h-9 bg-white/90 backdrop-blur rounded-full absolute top-3 right-3 flex items-center justify-center text-amber-500 shadow-sm text-sm">★</span>
           </div>
           <div class="p-4 bg-white">
             <h4 class="text-lg font-serif font-bold text-stone-900">PARMAR MATH'S TOPPER BATCH</h4>
             <p class="text-[11px] text-stone-400 tracking-wider font-semibold uppercase mt-1">Bhutesh Sir · DIRECT BATCH LINK</p>
           </div>
-        </div>
-
-        <div onclick="goTo('topics', 'Bhutesh Math\'s Foundation')" class="bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
-          <div class="h-44 relative bg-stone-200 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600" alt="Bhutesh Foundation" class="w-full h-full object-cover" />
-            <span class="w-9 h-9 bg-white/90 backdrop-blur rounded-full absolute top-3 right-3 flex items-center justify-center text-amber-500 shadow-sm">★</span>
-          </div>
-          <div class="p-4 bg-white">
-            <h4 class="text-lg font-serif font-bold text-stone-900">Bhutesh Math's Foundation</h4>
-            <p class="text-[11px] text-stone-400 tracking-wider font-semibold uppercase mt-1">Bhutesh Sir · DIRECT BATCH LINK</p>
-          </div>
-        </div>
+        </button>
       </div>
     </div>
 
     <!-- ==================== SCREEN 3: TOPICS ==================== -->
     <div id="screen-topics" class="hidden space-y-4">
       <div>
-        <p id="topics-category-tag" class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">MATH'S</p>
-        <div class="flex justify-between items-baseline">
-          <h2 id="topics-course-name" class="text-xl font-serif font-bold">PARMAR MATH'S TOPPER BATCH</h2>
-          <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">4 Subs</span>
-        </div>
+        <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Topics</p>
+        <h2 id="topics-course-name" class="text-xl font-serif font-bold">PARMAR MATH'S TOPPER BATCH</h2>
       </div>
 
-      <div id="topics-list-container" class="space-y-2.5">
-        <div onclick="goTo('chapters', 'PERCENTAGE')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+      <div class="space-y-2.5">
+        <button type="button" onclick="openTopic('PERCENTAGE')" class="w-full flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm active:scale-[0.98] transition-all text-left">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">01</div>
             <div>
               <h4 class="font-bold text-sm tracking-wide text-stone-900">PERCENTAGE</h4>
-              <p class="text-xs text-stone-400 mt-0.5">1 chapter</p>
+              <p class="text-xs text-stone-400 mt-0.5">Full Chapter Lectures</p>
             </div>
           </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
+          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">›</div>
+        </button>
+      </div>
+    </div>
 
-        <div onclic
+    <!-- ==================== SCREEN 4: CHAPTERS ==================== -->
+    <div id="screen-chapters" class="hidden space-y-4">
+      <div>
+        <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Lectures</p>
+        <h2 class="text-2xl font-serif font-bold">PERCENTAGE</h2>
+      </div>
+
+      <div class="space-y-3">
+        <button type="button" onclick="openChapter('PERCENTAGE LEC - 1')" class="w-full text-left p-5 bg-white rounded-3xl border border-stone-200/80 shadow-sm active:scale-[0.98] transition-all block">
+          <div class="flex items-baseline gap-3 mb-4">
+            <span class="text-lg font-serif italic text-amber-700 font-bold">01</span>
+            <h4 class="font-bold text-sm tracking-wide text-stone-900">PERCENTAGE LEC - 1</h4>
+          </div>
+          <div class="h-[1px] bg-stone-100 w-full mb-3"></div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-stone-400 uppercase tracking-wider font-semibold text-[10px]">RESOURCES AVAILABLE</span>
+            <span class="text-amber-800 font-semibold">Open ›</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== SCREEN 5: RESOURCES ==================== -->
+    <div id="screen-resources" class="hidden space-y-4">
+      <div>
+        <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Resources</p>
+        <h2 class="text-xl font-serif font-bold">PERCENTAGE LEC - 1</h2>
+      </div>
+
+      <div class="p-5 bg-white rounded-3xl border border-stone-200/80 shadow-sm space-y-4">
+        <p class="text-[11px] text-stone-400 font-semibold uppercase tracking-wider">SSC · PERCENTAGE</p>
+        <h3 class="text-lg font-serif font-bold text-stone-900">PERCENTAGE LEC - 1</h3>
+
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <a href="https://youtube.com" target="_blank" class="flex items-center gap-3 p-3.5 bg-[#FAF6F0] rounded-2xl border border-amber-900/10 hover:bg-[#F2ECE2] transition-colors">
+            <div class="w-7 h-7 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-xs">▶</div>
+            <span class="text-xs font-semibold text-stone-800 leading-tight">Video Lecture</span>
+          </a>
+
+          <a href="https://google.com" target="_blank" class="flex items-center gap-3 p-3.5 bg-[#FAF6F0] rounded-2xl border border-amber-900/10 hover:bg-[#F2ECE2] transition-color
