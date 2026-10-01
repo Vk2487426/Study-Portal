@@ -43,256 +43,297 @@
     <!-- Breadcrumbs Navigation -->
     <div id="breadcrumbs" class="hidden flex items-center flex-wrap gap-1.5 mb-5 text-[11px] font-medium tracking-tight"></div>
 
-    <!-- ==================== SCREEN 0: HOME ==================== -->
-    <div id="screen-home" class="space-y-4">
-      
-      <!-- Real-Time Automated Counter Row (3 Stats) -->
-      <div class="grid grid-cols-3 gap-2.5">
-        <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
-          <span id="counter-exams" class="block text-2xl font-serif italic text-amber-700 font-bold">0</span>
-          <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Exams</span>
-        </div>
-        <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
-          <span id="counter-courses" class="block text-2xl font-serif italic text-amber-700 font-bold">0</span>
-          <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Courses</span>
-        </div>
-        <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
-          <span id="counter-institutes" class="block text-2xl font-serif italic text-amber-700 font-bold">0</span>
-          <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Institutes</span>
-        </div>
-      </div>
+    <!-- MAIN DYNAMIC CONTENT CONTAINER -->
+    <main id="app-view"></main>
 
-      <!-- Search Input -->
-      <div class="relative">
-        <svg class="w-4 h-4 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <input id="search-box" type="text" placeholder="Search exams, institutes..." class="w-full bg-white border border-stone-200/80 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none shadow-sm" />
-      </div>
-
-      <!-- Toggle Buttons (Exams vs Institutes) -->
-      <div class="flex bg-[#EBE6DC] p-1.5 rounded-2xl">
-        <button id="tab-exams-btn" onclick="toggleTab('exams')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 bg-stone-900 text-white shadow-sm transition-all">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          By Exams
-        </button>
-        <button id="tab-inst-btn" onclick="toggleTab('institutes')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 text-stone-600 transition-all">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-          By Institutes
-        </button>
-      </div>
-
-      <!-- ================= TAB VIEW: EXAMS ================= -->
-      <div id="view-exams" class="pt-2">
-        <div class="flex justify-between items-baseline mb-3">
-          <div>
-            <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Get Started</p>
-            <h2 class="text-2xl font-serif tracking-tight font-bold">Choose your exam</h2>
-          </div>
-          <span id="exam-badge-count" class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">1 Available</span>
-        </div>
-
-        <!-- SSC Card -->
-        <div onclick="goTo('categories')" class="bg-[#2D1B13] rounded-3xl overflow-hidden shadow-md cursor-pointer border border-stone-300 active:scale-[0.99] transition-transform">
-          <div class="h-44 flex items-center justify-center p-6 bg-gradient-to-b from-stone-900/40 to-transparent">
-            <div class="w-28 h-28 rounded-full border-4 border-amber-400/90 bg-gradient-to-tr from-amber-700 to-amber-900 shadow-2xl flex flex-col items-center justify-center text-center p-2 relative">
-              <div class="w-22 h-22 rounded-full border border-amber-300/40 flex flex-col items-center justify-center p-1">
-                <span class="text-2xl">🏛️</span>
-                <span class="text-[9px] font-bold text-amber-200 tracking-wider mt-1">SSC</span>
-                <span class="text-[7px] text-amber-300/80 uppercase font-semibold">Govt of India</span>
-              </div>
-            </div>
-          </div>
-          <div class="bg-white p-5 rounded-t-3xl border-t border-stone-200">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-              <span class="text-[10px] font-bold tracking-widest text-amber-800 uppercase">READY</span>
-            </div>
-            <h3 class="text-xl font-serif font-bold text-stone-900">SSC</h3>
-            <p class="text-xs text-stone-400 font-medium tracking-wide mt-0.5">6 CATEGORIES</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= TAB VIEW: INSTITUTES ================= -->
-      <div id="view-institutes" class="hidden pt-2 space-y-4">
-        <div class="flex justify-between items-baseline mb-3">
-          <div>
-            <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Explore</p>
-            <h2 class="text-2xl font-serif tracking-tight font-bold">Choose institute</h2>
-          </div>
-          <span id="inst-badge-count" class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">4 Available</span>
-        </div>
-
-        <!-- 1. Selection Way Card -->
-        <div onclick="goTo('categories')" class="institute-item bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer active:scale-[0.99] transition-transform">
-          <div class="h-44 bg-[#0F141C] flex items-center justify-center relative p-6">
-            <div class="flex items-center gap-3">
-              <div class="w-14 h-14 rounded-2xl bg-[#00A3FF]/20 border border-[#00A3FF]/40 flex items-center justify-center">
-                <span class="text-3xl text-[#00A3FF] font-black">SW</span>
-              </div>
-              <div>
-                <span class="text-white font-bold text-lg tracking-wider block">SELECTION WAY</span>
-                <span class="text-[#00A3FF] text-xs tracking-widest">OFFICIAL</span>
-              </div>
-            </div>
-          </div>
-          <div class="p-4 bg-white">
-            <h4 class="text-lg font-serif font-bold text-stone-900">SELECTION WAY</h4>
-            <p class="text-[11px] text-stone-400 tracking-wider font-semibold uppercase mt-0.5">DIRECT LINK</p>
-          </div>
-        </div>
-
-        <!-- 2. Unacademy Card -->
-        <div onclick="goTo('categories')" class="institute-item bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer active:scale-[0.99] transition-transform">
-          <div class="h-44 bg-gradient-to-b from-stone-100 to-white flex items-center justify-center relative p-6">
-            <span class="w-9 h-9 bg-white/90 backdrop-blur rounded-full absolute top-3 right-3 flex items-center justify-center text-amber-500 shadow-sm text-sm">★</span>
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-full bg-[#08BD80] flex items-center justify-center text-white text-xs font-bold">U</div>
-              <span class="text-2xl font-bold tracking-tight text-[#085E53]">unacademy</span>
-            </div>
-          </div>
-          <div class="p-4 bg-white">
-            <h4 class="text-lg font-serif font-bold text-stone-900">UNACADEMY</h4>
-            <p class="text-[11px] text-stone-400 tracking-wider font-semibold uppercase mt-0.5">DIRECT LINK</p>
-          </div>
-        </div>
-
-        <!-- 3. Master Sahab Card -->
-        <div onclick="goTo('categories')" class="institute-item bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer active:scale-[0.99] transition-transform">
-          <div class="h-44 relative bg-slate-900 overflow-hidden flex items-center justify-between px-6">
-            <span class="w-9 h-9 bg-white/90 backdrop-blur rounded-full absolute top-3 right-3 flex items-center justify-center text-amber-500 shadow-sm text-sm z-10">★</span>
-            <div>
-              <span class="text-blue-500 text-xs font-bold tracking-widest uppercase">Platform</span>
-              <h3 class="text-2xl font-black text-white tracking-tight leading-tight">MASTER<br><span class="text-blue-400">SAHAB</span></h3>
-            </div>
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600" alt="Master Sahab" class="h-full object-cover rounded-l-3xl shadow-lg" />
-          </div>
-          <div class="p-4 bg-white">
-            <h4 class="text-lg font-serif font-bold text-stone-900">MASTER SAHAB</h4>
-            <p class="text-[11px] text-stone-400 tracking-wider font-semibold uppercase mt-0.5">DIRECT LINK</p>
-          </div>
-        </div>
-
-        <!-- 4. Physics Wallah (PW) Card -->
-        <div onclick="goTo('categories')" class="institute-item bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer active:scale-[0.99] transition-transform">
-          <div class="h-44 bg-[#1E1E2F] flex items-center justify-center relative p-6">
-            <div class="text-center">
-              <span class="text-4xl font-black text-white tracking-widest">PW</span>
-              <span class="block text-amber-400 text-xs font-bold tracking-widest mt-1">PHYSICS WALLAH</span>
-            </div>
-          </div>
-          <div class="p-4 bg-white">
-            <h4 class="text-lg font-serif font-bold text-stone-900">PHYSICS WALLAH</h4>
-            <p class="text-[11px] text-stone-400 tracking-wider font-semibold uppercase mt-0.5">DIRECT LINK</p>
-          </div>
-        </div>
-      </div>
+    <!-- Bottom Back Button -->
+    <div id="bottom-back-btn" class="hidden pt-4">
+      <button onclick="goBack()" class="px-5 py-2.5 bg-white rounded-full border border-stone-200/80 text-xs font-semibold text-stone-700 flex items-center gap-2 shadow-sm active:scale-95 transition-transform">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        Back
+      </button>
     </div>
 
-    <!-- ==================== SCREEN 1: CATEGORIES ==================== -->
-    <div id="screen-categories" class="hidden space-y-4">
-      <div>
-        <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Browse By Category</p>
-        <div class="flex justify-between items-baseline">
-          <h2 class="text-2xl font-serif font-bold">Categories</h2>
-          <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">6 Total</span>
-        </div>
-      </div>
+  </div>
 
-      <div class="space-y-2.5">
-        <div onclick="goTo('courses', 'GK')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">GK</div>
-            <div>
-              <h4 class="font-bold text-sm tracking-wide text-stone-900">GK</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
-            </div>
-          </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
-
-        <div onclick="goTo('courses', 'MATH\'S')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">M</div>
-            <div>
-              <h4 class="font-bold text-sm tracking-wide text-stone-900">MATH'S</h4>
-              <p class="text-xs text-stone-400 mt-0.5">5 courses available</p>
-            </div>
-          </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
-
-        <div onclick="goTo('courses', 'ENGLISH')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">EN</div>
-            <div>
-              <h4 class="font-bold text-sm tracking-wide text-stone-900">ENGLISH</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
-            </div>
-          </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
-
-        <div onclick="goTo('courses', 'REASONING')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">R</div>
-            <div>
-              <h4 class="font-bold text-sm tracking-wide text-stone-900">REASONING</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
-            </div>
-          </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
-
-        <div onclick="goTo('courses', 'COMPUTER')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">CS</div>
-            <div>
-              <h4 class="font-bold text-sm tracking-wide text-stone-900">COMPUTER</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
-            </div>
-          </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
-
-        <div onclick="goTo('courses', 'COMBO COURSES')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">ALL</div>
-            <div>
-              <h4 class="font-bold text-sm tracking-wide text-stone-900">COMBO COURSES</h4>
-              <p class="text-xs text-stone-400 mt-0.5">2 courses available</p>
-            </div>
-          </div>
-          <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center text-stone-700">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </div>
-        </div>
-      </div>
+  <!-- Persistent Floating Bottom Social Bar -->
+  <nav class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
+    <div class="flex items-center gap-6 px-6 py-3 bg-white/95 backdrop-blur-md border border-stone-200/80 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
+      <a href="https://wa.me" target="_blank" class="text-stone-700 hover:text-black">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+      </a>
+      <a href="https://telegram.org" target="_blank" class="text-stone-700 hover:text-black">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.77-1.16 3.35-1.37 3.73-1.37.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+      </a>
+      <a href="https://youtube.com" target="_blank" class="text-stone-700 hover:text-black">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+      </a>
+      <a href="#" class="text-stone-700 hover:text-black">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 18v-6a9 9 0 0118 0v6M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>
+      </a>
     </div>
+  </nav>
 
-    <!-- ==================== SCREEN 2: COURSES ==================== -->
-    <div id="screen-courses" class="hidden space-y-4">
-      <div>
-        <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Available Courses</p>
-        <div class="flex justify-between items-baseline">
-          <h2 id="courses-title" class="text-2xl font-serif font-bold">MATH'S</h2>
-          <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">3 Courses</span>
-        </div>
-      </div>
+  <script>
+    // ✅ CONNECTED TO YOUR SHEET:
+    const GOOGLE_SHEET_ID = "1hwEV1RWEq8nzPAPBDrOaZ7KyfWJCsNcaLQ1HudgipXU";
 
-      <div class="space-y-4">
-        <div onclick="goTo('topics', 'PARMAR MATH\'S TOPPER BATCH')" class="course-item bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
-          <div class="h-44 relative bg-stone-200 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600" alt="Parmar Batch" class="w-full h-full object-cover" />
-            <span class="w-9 h-9 bg-white/90 backdrop-blur rounded-full absolute top-3 right-3 flex items-center justify-center text-amber-500 shadow-sm">★</span>
+    // Built-in Backup Data (used automatically if Sheet is ever empty or offline)
+    const BACKUP_DATA = [
+      { Exam: "SSC", Category: "MATH'S", Course: "PARMAR MATH'S TOPPER BATCH", Teacher: "Bhutesh Sir", CourseImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600", Topic: "PERCENTAGE", ChapterNum: "01", ChapterTitle: "PERCENTAGE LEC - 1", VideoURL: "https://youtube.com", PdfURL: "https://google.com" },
+      { Exam: "SSC", Category: "MATH'S", Course: "Bhutesh Math's Foundation", Teacher: "Bhutesh Sir", CourseImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600", Topic: "NUMBER SYSTEM", ChapterNum: "01", ChapterTitle: "Divisibility Rules", VideoURL: "https://youtube.com", PdfURL: "https://google.com" },
+      { Exam: "SSC", Category: "GK", Course: "Static GK Special", Teacher: "Parmar Sir", CourseImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600", Topic: "DANCES OF INDIA", ChapterNum: "01", ChapterTitle: "Classical Dances Part 1", VideoURL: "https://youtube.com", PdfURL: "https://google.com" },
+      { Exam: "SSC", Category: "ENGLISH", Course: "English Foundation Batch", Teacher: "Tarun Grover", CourseImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600", Topic: "SUBJECT VERB AGREEMENT", ChapterNum: "01", ChapterTitle: "Rules of SVA Lecture 1", VideoURL: "https://youtube.com", PdfURL: "https://google.com" }
+    ];
+
+    let portalData = [...BACKUP_DATA];
+    let activeTab = 'exams';
+    let currentExam = null;
+    let currentCategory = null;
+    let currentCourse = null;
+    let currentTopic = null;
+    let currentChapter = null;
+
+    // Load data from your Google Sheet
+    async function loadData() {
+      if (GOOGLE_SHEET_ID && GOOGLE_SHEET_ID.trim() !== "") {
+        try {
+          const res = await fetch(`https://opensheet.elk.sh/${GOOGLE_SHEET_ID}/Sheet1`);
+          const json = await res.json();
+          if (Array.isArray(json) && json.length > 0) {
+            portalData = json;
+          }
+        } catch (e) {
+          console.warn("Could not connect to Google Sheet, using backup data", e);
+        }
+      }
+      render();
+    }
+
+    function updateNavUI() {
+      const topBack = document.getElementById("top-back-btn");
+      const bottomBack = document.getElementById("bottom-back-btn");
+      const breadcrumbs = document.getElementById("breadcrumbs");
+
+      if (currentExam) {
+        topBack.classList.remove("hidden");
+        bottomBack.classList.remove("hidden");
+        breadcrumbs.classList.remove("hidden");
+
+        const crumbs = [{ name: "Home", action: "resetAll()" }];
+        if (currentExam) crumbs.push({ name: currentExam, action: `selectExam('${currentExam}')` });
+        if (currentCategory) crumbs.push({ name: currentCategory, action: `selectCategory('${currentCategory}')` });
+        if (currentCourse) crumbs.push({ name: currentCourse, action: `selectCourse('${currentCourse}')` });
+        if (currentTopic) crumbs.push({ name: currentTopic, action: `selectTopic('${currentTopic}')` });
+        if (currentChapter) crumbs.push({ name: currentChapter.ChapterTitle, action: "" });
+
+        breadcrumbs.innerHTML = crumbs.map((c, i) => {
+          const isLast = i === crumbs.length - 1;
+          return `
+            <div class="flex items-center gap-1.5">
+              <button onclick="${c.action}" class="px-3 py-1 rounded-xl border transition-all ${
+                isLast ? "bg-stone-900 text-white border-stone-900" : "bg-white text-stone-600 border-stone-200/80 shadow-sm hover:bg-stone-50"
+              }">
+                ${c.name}
+              </button>
+              ${!isLast ? '<span class="text-stone-400">›</span>' : ''}
+            </div>
+          `;
+        }).join("");
+      } else {
+        topBack.classList.add("hidden");
+        bottomBack.classList.add("hidden");
+        breadcrumbs.classList.add("hidden");
+      }
+    }
+
+    function goBack() {
+      if (currentChapter) currentChapter = null;
+      else if (currentTopic) currentTopic = null;
+      else if (currentCourse) currentCourse = null;
+      else if (currentCategory) currentCategory = null;
+      else if (currentExam) currentExam = null;
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function resetAll() {
+      currentExam = currentCategory = currentCourse = currentTopic = currentChapter = null;
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function selectExam(exam) {
+      currentExam = exam;
+      currentCategory = currentCourse = currentTopic = currentChapter = null;
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function selectCategory(cat) {
+      currentCategory = cat;
+      currentCourse = currentTopic = currentChapter = null;
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function selectCourse(crs) {
+      currentCourse = crs;
+      currentTopic = currentChapter = null;
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function selectTopic(topic) {
+      currentTopic = topic;
+      currentChapter = null;
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function selectChapter(idx) {
+      const filtered = portalData.filter(r => r.Course === currentCourse && r.Topic === currentTopic);
+      currentChapter = filtered[idx];
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function toggleTab(tab) {
+      activeTab = tab;
+      render();
+    }
+
+    function render() {
+      updateNavUI();
+      const container = document.getElementById("app-view");
+
+      // 0. HOME SCREEN
+      if (!currentExam) {
+        const exams = Array.from(new Set(portalData.map(r => r.Exam).filter(Boolean)));
+        const coursesCount = Array.from(new Set(portalData.map(r => r.Course).filter(Boolean))).length;
+
+        container.innerHTML = `
+          <div class="space-y-4">
+            <!-- Dynamic Automated Counters -->
+            <div class="grid grid-cols-3 gap-2.5">
+              <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
+                <span class="block text-2xl font-serif italic text-amber-700 font-bold">${exams.length || 1}</span>
+                <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Exams</span>
+              </div>
+              <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
+                <span class="block text-2xl font-serif italic text-amber-700 font-bold">${coursesCount || 4}</span>
+                <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Courses</span>
+              </div>
+              <div class="bg-white rounded-3xl p-4 border border-stone-200/70 text-center shadow-sm">
+                <span class="block text-2xl font-serif italic text-amber-700 font-bold">5</span>
+                <span class="text-[10px] font-semibold text-stone-400 tracking-widest uppercase">Institutes</span>
+              </div>
+            </div>
+
+            <!-- Search -->
+            <div class="relative">
+              <svg class="w-4 h-4 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input type="text" placeholder="Search exams, institutes..." class="w-full bg-white border border-stone-200/80 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none shadow-sm" />
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="flex bg-[#EBE6DC] p-1.5 rounded-2xl">
+              <button onclick="toggleTab('exams')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 ${activeTab === 'exams' ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600'}">
+                By Exams
+              </button>
+              <button onclick="toggleTab('institutes')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 ${activeTab === 'institutes' ? 'bg-stone-900 text-white shadow-sm' : 'text-stone-600'}">
+                By Institutes
+              </button>
+            </div>
+
+            <!-- Tab: By Exams -->
+            ${activeTab === 'exams' ? `
+              <div class="pt-2">
+                <div class="flex justify-between items-baseline mb-3">
+                  <div>
+                    <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Get Started</p>
+                    <h2 class="text-2xl font-serif tracking-tight font-bold">Choose your exam</h2>
+                  </div>
+                  <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">${exams.length || 1} Available</span>
+                </div>
+
+                ${exams.map(exam => `
+                  <div onclick="selectExam('${exam}')" class="bg-[#2D1B13] rounded-3xl overflow-hidden shadow-md cursor-pointer border border-stone-300 active:scale-[0.99] transition-transform">
+                    <div class="h-44 flex items-center justify-center p-6 bg-gradient-to-b from-stone-900/40 to-transparent">
+                      <div class="w-28 h-28 rounded-full border-4 border-amber-400/90 bg-gradient-to-tr from-amber-700 to-amber-900 shadow-2xl flex flex-col items-center justify-center text-center p-2 relative">
+                        <div class="w-22 h-22 rounded-full border border-amber-300/40 flex flex-col items-center justify-center p-1">
+                          <span class="text-2xl">🏛️</span>
+                          <span class="text-[9px] font-bold text-amber-200 tracking-wider mt-1">${exam}</span>
+                          <span class="text-[7px] text-amber-300/80 uppercase font-semibold">Govt of India</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-t-3xl border-t border-stone-200">
+                      <div class="flex items-center gap-2 mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                        <span class="text-[10px] font-bold tracking-widest text-amber-800 uppercase">READY</span>
+                      </div>
+                      <h3 class="text-xl font-serif font-bold text-stone-900">${exam}</h3>
+                      <p class="text-xs text-stone-400 font-medium tracking-wide mt-0.5">DIRECT BATCH ACCESS</p>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            ` : `
+              <!-- Tab: By Institutes -->
+              <div class="pt-2 space-y-4">
+                <div class="flex justify-between items-baseline mb-3">
+                  <div>
+                    <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Explore</p>
+                    <h2 class="text-2xl font-serif tracking-tight font-bold">Choose institute</h2>
+                  </div>
+                  <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">3 Available</span>
+                </div>
+
+                <div onclick="selectExam('SSC')" class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer p-6 bg-[#0F141C] text-center">
+                  <span class="text-3xl text-[#00A3FF] font-black block">SELECTION WAY</span>
+                  <span class="text-xs text-stone-400 uppercase tracking-widest mt-1 block">DIRECT LINK</span>
+                </div>
+                <div onclick="selectExam('SSC')" class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer p-6 text-center">
+                  <span class="text-2xl text-[#08BD80] font-bold block">unacademy</span>
+                  <span class="text-xs text-stone-400 uppercase tracking-widest mt-1 block">DIRECT LINK</span>
+                </div>
+                <div onclick="selectExam('SSC')" class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm cursor-pointer p-6 bg-slate-900 text-center">
+                  <span class="text-2xl text-blue-400 font-black block">MASTER SAHAB</span>
+                  <span class="text-xs text-stone-400 uppercase tracking-widest mt-1 block">DIRECT LINK</span>
+                </div>
+              </div>
+            `}
           </div>
-         
+        `;
+      }
+
+      // 1. CATEGORIES SCREEN
+      else if (currentExam && !currentCategory) {
+        const categories = Array.from(new Set(portalData.filter(r => r.Exam === currentExam).map(r => r.Category).filter(Boolean)));
+
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div>
+              <p class="text-[10px] tracking-widest uppercase text-amber-700 font-bold">Browse By Category</p>
+              <div class="flex justify-between items-baseline">
+                <h2 class="text-2xl font-serif font-bold">Categories</h2>
+                <span class="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">${categories.length} Total</span>
+              </div>
+            </div>
+
+            <div class="space-y-2.5">
+              ${categories.map(cat => {
+                const count = Array.from(new Set(portalData.filter(r => r.Exam === currentExam && r.Category === cat).map(r => r.Course))).length;
+                return `
+                  <div onclick="selectCategory('${cat}')" class="flex items-center justify-between p-4 bg-white rounded-3xl border border-stone-200/80 shadow-sm cursor-pointer active:scale-[0.99] transition-all">
+                    <div class="flex items-center gap-4">
+                      <div class="w-12 h-12 rounded-2xl bg-[#F6EDE1] flex items-center justify-center text-amber-800 font-bold">
+                        ${cat.substring(0, 2)}
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-sm tracking-wide text-stone-900">${cat}</h4>
+                        <p class="text-xs text-stone-400 mt-0.5">${count} courses available</p>
+                      </div>
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-stone
